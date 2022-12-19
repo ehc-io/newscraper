@@ -43,6 +43,7 @@ def main(runs, interval, nocache, showheaders, proxy, useragent,randomstring):
     # 
     s = requests.Session()
     for i in range(1, int(runs)+1):
+        print("======================< start of run #%s >======================" % i)
         if nocache:
             print('Sending "Cache-Control: no-cache, no-store" directive')
             headers['Cache-Control'] = "no-cache, no-store"
@@ -52,7 +53,6 @@ def main(runs, interval, nocache, showheaders, proxy, useragent,randomstring):
             url_param = "?q=" + getrandomstring(10)
         else:
             url_param = ""
-        print("======================< start of run #%s >======================" % i)
         print("URL: %s" % URL + url_param)
         print("Timestamp: %s - %s" % (timestamp, now.time()))
         r = s.get(URL + url_param, headers=headers, proxies=proxies, verify=False)
@@ -68,7 +68,7 @@ def main(runs, interval, nocache, showheaders, proxy, useragent,randomstring):
                 if key == "Cookies" or key == "link" or key == "Link" : continue
                 print(key, ' : ', value)
         # print articles
-        print("--------------------< Ultimas Noticias %s >------------------------ ")
+        print("--------------------< Ultimas Noticias >------------------------ ")
         for article in articles :
             print('%s | %s' % (article[0] , article[1]))
         print("=======================================================================")
