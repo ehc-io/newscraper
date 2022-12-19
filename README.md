@@ -4,7 +4,7 @@ Script for Cache/CDN tests
 
 ## How to use:
 
-`python3 ./newscraper.py -i 10 -r 1000 -x 127.0.0.1:8080 -u "com-cache"`
+`python3 ./newscraper.py -i 10 -r 1000 -x 127.0.0.1:8080 -u "allow-cache"`
 
 ### Parameters
 
