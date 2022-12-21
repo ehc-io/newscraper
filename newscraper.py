@@ -17,6 +17,7 @@ import random
 warnings.filterwarnings('ignore')
 USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:108.0) Gecko/20100101 Firefox/108.0"
 URL = "https://istoe.com.br/ultimas/"
+MAX_ARTICLES = 10
 
 def getrandomstring(N):
     return(''.join(random.choices(string.ascii_letters + string.digits, k=N)))
@@ -48,6 +49,7 @@ def main(runs, interval, nocache, showheaders, proxy, useragent,randomstring):
             print('Sending "Cache-Control: no-cache, no-store" directive')
             headers['Cache-Control'] = "no-cache, no-store"
         now = datetime.datetime.now()
+        article_counter = 0
         timestamp = int(time.time())
         if randomstring:
             url_param = "?q=" + getrandomstring(10)
@@ -71,6 +73,9 @@ def main(runs, interval, nocache, showheaders, proxy, useragent,randomstring):
         print("--------------------< Ultimas Noticias >------------------------ ")
         for article in articles :
             print('%s | %s' % (article[0] , article[1]))
+            if article_counter > MAX_ARTICLES:
+                break
+            article_counter += 1
         print("=======================================================================")
         if int(runs) > 1 : time.sleep(int(interval))
         if i > int(runs) : break
